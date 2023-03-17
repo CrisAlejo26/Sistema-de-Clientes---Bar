@@ -1,0 +1,64 @@
+.navs {
+    background-color: blueviolet;
+    height: 80px;
+}
+
+.nav__container {
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__container__titulo {
+    color: white;
+    font-size: 2rem;
+}
+
+.nav__icon {
+    cursor: pointer;
+}
+
+.nav__img {
+    display: block;
+    width: 35px;
+}
+
+.nav__items {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    background-color: indigo;
+    height: 100%;
+    width: 60%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    transform: translate(100%);
+    transition: .4s transform;
+}
+
+.nav__checkbox {
+    display: none;
+}
+
+
+
+.nav__link {
+    color: white;
+    text-decoration: none;
+}
+
+
+/* cualquier elemento que este checkeado lo que va hacer es poder a todos los elementos con un transform de 0*/
+:checked + .nav__items {
+    transform: translate(0);
+}
+
+.nav__items:target {
+    background-color: white;
+}
