@@ -1,5 +1,5 @@
-import { Card } from '../components/Card';
-import { Nav } from '../components/Nav';
+import { Card } from './../components/user/Card';
+import { Nav } from './../components/user/Nav';
 
 export const Pedido = () => {
     return (

@@ -1,5 +1,5 @@
-import {Input} from '../components/Input'
-import { Nav } from './../components/Nav';
+import { Input } from './../components/user/Input';
+import { Nav } from './../components/user/Nav';
 
 export const Inicio = () => {
     return (

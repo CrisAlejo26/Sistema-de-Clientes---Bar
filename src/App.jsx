@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { PedidosAdmin } from "./components/PedidosAdmin"
+import { Delivery } from "./components/admin/Delivery"
+import { NavAdmin } from "./components/admin/NavAdmin"
 import { Admin } from "./pages/Admin"
 import { Carrito } from "./pages/Carrito"
 import { Inicio } from "./pages/Inicio"
@@ -15,8 +16,9 @@ function App() {
       <Route path="/pedidos" element = {<Pedido/>} />
       <Route path="/carrito" element = {<Carrito/>} />
       <Route path="/login" element = {<Login/>} />
-      <Route path="/admin/" element = {<Admin/>}>
-        <Route path="pedidos" index element = {<PedidosAdmin/>}/>
+      <Route path="/admin/" element = {<NavAdmin/>}>
+        <Route index element = {<Admin/>}/>
+        <Route path="pedidos" element = {<Delivery/>}/>
       </Route>
     </Routes>
     </BrowserRouter>

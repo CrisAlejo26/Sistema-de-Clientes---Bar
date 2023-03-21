@@ -1,5 +1,5 @@
-import { Nav } from "../components/Nav"
-import { ProductoCarrito } from "../components/ProductoCarrito";
+import { ProductoCarrito } from './../components/user/ProductoCarrito';
+import { Nav } from './../components/user/Nav';
 
 export const Carrito = () => {
     
