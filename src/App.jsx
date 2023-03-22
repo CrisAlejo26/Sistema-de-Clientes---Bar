@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { NavAdmin } from "./components/admin/NavAdmin"
 import { Admin } from "./pages/Admin"
 import { Carrito } from "./pages/Carrito"
@@ -9,10 +9,11 @@ import { Pedido } from "./pages/Pedido"
 
 function App() {
 
+
   return (
     <BrowserRouter>
     <Routes>
-      <Route path="/" index element = {<Inicio/>} />
+      <Route path="/" element = {<Inicio/>} index />
       <Route path="/pedidos" element = {<Pedido/>} />
       <Route path="/carrito" element = {<Carrito/>} />
       <Route path="/login" element = {<Login/>} />

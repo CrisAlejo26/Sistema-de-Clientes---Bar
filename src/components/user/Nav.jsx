@@ -6,7 +6,7 @@ export const Nav = () => {
             <nav className="container">
                 <div className="container__nav__separacion">
                     <div className="nav__isesion__container">
-                        <Link to={'/carrito'} ><img src="/carrito.png" alt="no se puede ver" className="nav__img--sesion"/></Link>
+                        <Link to={'/carrito'} ><img src="/carrito.png" alt="no se puede ver" className="nav__img--sesion"/><span className="nav__img--sesion__span">1</span></Link>
                     </div>
                     <ul>
                         <Link className="nav__isesion" to={'/login'}>
