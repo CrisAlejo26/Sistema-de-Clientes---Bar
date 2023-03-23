@@ -3,6 +3,7 @@ import { NavAdmin } from "./components/admin/NavAdmin"
 import { Admin } from "./pages/Admin"
 import { Carrito } from "./pages/Carrito"
 import { Delivery } from "./pages/Delivery"
+import { DetailsDelivery } from "./pages/DetailsDelivery"
 import { Inicio } from "./pages/Inicio"
 import { Login } from "./pages/Login"
 import { Pedido } from "./pages/Pedido"
@@ -21,6 +22,7 @@ function App() {
         <Route index element = {<Admin/>}/>
         <Route path="pedidos" element = {<Delivery/>}/>
       </Route>
+      <Route path="/detalles" element = {<DetailsDelivery/>}/>
     </Routes>
     </BrowserRouter>
   )

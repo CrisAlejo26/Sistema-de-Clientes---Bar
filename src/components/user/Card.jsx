@@ -3,7 +3,7 @@ import '../../styles/card.css'
 export const Card = () => {
     return (
         <div className="card">
-            <img className='imagen' src='/public/fondo-pedidos.jpg' alt="Denim Jeans" style={{width: '100%'}}/>
+            <img className='imagen' src='/fondo-pedidos.jpg' alt="Denim Jeans" style={{width: '100%'}}/>
             <div className='card__flex'>
                 <h1 className='card__titulo'>Tailored Jeans</h1>
                 <p className="price">$19.99</p>

@@ -19,7 +19,6 @@ export const Input = () => {
         }
         dispatch(ocupationTable())
         navigate('/pedidos')
-
         
     }
 
