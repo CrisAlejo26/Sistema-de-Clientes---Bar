@@ -1,4 +1,6 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { NavAdmin } from "./components/admin/NavAdmin"
 import { Admin } from "./pages/Admin"
 import { Carrito } from "./pages/Carrito"
@@ -7,23 +9,29 @@ import { DetailsDelivery } from "./pages/DetailsDelivery"
 import { Inicio } from "./pages/Inicio"
 import { Login } from "./pages/Login"
 import { Pedido } from "./pages/Pedido"
+import { userThunk } from "./redux/user/userThunk"
 
 function App() {
 
+  const dispatch = useDispatch()
+    
+  useEffect(() => {
+    dispatch(userThunk())
+  }, []);
 
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element = {<Inicio/>} index />
-      <Route path="/pedidos" element = {<Pedido/>} />
-      <Route path="/carrito" element = {<Carrito/>} />
-      <Route path="/login" element = {<Login/>} />
-      <Route path="/admin/" element = {<NavAdmin/>}>
-        <Route index element = {<Admin/>}/>
-        <Route path="pedidos" element = {<Delivery/>}/>
-      </Route>
-      <Route path="/detalles" element = {<DetailsDelivery/>}/>
-    </Routes>
+      <Routes>
+        <Route path="/" element = {<Inicio/>} index />
+        <Route path="/pedidos" element = {<Pedido/>} />
+        <Route path="/carrito" element = {<Carrito/>} />
+        <Route path="/login" element = {<Login/>} />
+        <Route path="/admin/" element = {<NavAdmin/>}>
+          <Route index element = {<Admin/>}/>
+          <Route path="pedidos" element = {<Delivery/>}/>
+        </Route>
+        <Route path="/detalles/:id" element = {<DetailsDelivery/>}/>
+      </Routes>
     </BrowserRouter>
   )
 }
