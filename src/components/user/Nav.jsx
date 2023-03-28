@@ -9,7 +9,7 @@ export const Nav = () => {
             <nav className="container">
                 <div className="container__nav__separacion">
                     <div className="nav__isesion__container ">
-                        <Link to={'/carrito'} ><FontAwesomeIcon className="nav__img--sesion" size="xl" icon={faChampagneGlasses} style={{color: "#ffffff",}} /><span className="nav__img--sesion__span">1</span></Link>
+                        <Link to={'/carrito'} ><FontAwesomeIcon className="nav__img--sesion" size="xl" icon={faChampagneGlasses} style={{color: "#ffffff",}} /><span className="nav__img--sesion__span">0</span></Link>
                     </div>
                     <ul>
                         <Link className="nav__isesion" to={'/login'}>

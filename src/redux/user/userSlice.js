@@ -11,7 +11,8 @@ export const userSlice = createSlice({
         validation: false,
         tableSelect: '',
         data: [],
-        details: {}
+        details: {},
+        shop: []
     },
     reducers: {
 
@@ -48,9 +49,23 @@ export const userSlice = createSlice({
             state.details = {}
             state.details = det
         },
+
+        clearDetailsDelivery: (state) => {
+            state.details = {}
+        },
+
+        setTable: (state) => {
+            state.table = state.tableSelect
+        },
+
+        // ? Carrito de Compras
+        addCarShop: (state, action) => {
+            state.shop = [...state.shop, action.payload]
+        }
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { selectTable, validationTable, ocupationTable, indexApp, loadData, setIdDetails, setDetailsDelivery } = userSlice.actions;
+export const { selectTable, validationTable, ocupationTable, indexApp, loadData, setIdDetails, setDetailsDelivery,
+    clearDetailsDelivery, setTable, addCarShop } = userSlice.actions;

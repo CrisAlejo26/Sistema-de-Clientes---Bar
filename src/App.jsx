@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { NavAdmin } from "./components/admin/NavAdmin"
+import { ProtectedRouteUser } from "./components/user/ProtectedRouteUser"
 import { Admin } from "./pages/Admin"
 import { Carrito } from "./pages/Carrito"
 import { Delivery } from "./pages/Delivery"
@@ -23,14 +24,16 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element = {<Inicio/>} index />
-        <Route path="/pedidos" element = {<Pedido/>} />
-        <Route path="/carrito" element = {<Carrito/>} />
+        <Route element = {<ProtectedRouteUser/>}>
+          <Route path="/pedidos" element = {<Pedido/>} />
+          <Route path="/carrito" element = {<Carrito/>} />
+          <Route path="/detalles/:id" element = {<DetailsDelivery/>}/>
+        </Route>
         <Route path="/login" element = {<Login/>} />
         <Route path="/admin/" element = {<NavAdmin/>}>
           <Route index element = {<Admin/>}/>
           <Route path="pedidos" element = {<Delivery/>}/>
         </Route>
-        <Route path="/detalles/:id" element = {<DetailsDelivery/>}/>
       </Routes>
     </BrowserRouter>
   )

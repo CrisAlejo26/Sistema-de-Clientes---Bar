@@ -3,22 +3,30 @@ import { Nav } from "../components/user/Nav"
 import { faStar, faStarHalfStroke } from '@fortawesome/free-solid-svg-icons';
 import '../styles/detailsDelivery.css'
 import { Button } from "@mui/material";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { formaterDinero } from "../helpers/functions";
+import { useNavigate } from "react-router-dom";
+import { clearDetailsDeliveryThunk } from "../redux/user/userThunk";
+import { Footer } from "../components/user/Footer";
 
 export const DetailsDelivery = () => {
-
-    const idParameter = useParams()
     
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const {details} = useSelector(state => state.user)
     const detai = details[0]
     const {nombre, descripcion, urlImage, precio} = detai
     let prec = formaterDinero(precio)
+
+    const clearDetails = () => {
+        dispatch(clearDetailsDeliveryThunk())
+        navigate('/pedidos')
+    }
     return (
         <>
         <Nav/>
         <div className="container">
+        <Button style={{marginTop: '1rem'}} onClick={() => clearDetails()} variant="outlined">Volver</Button>
             <h2 className="container--title">Detalles</h2>
             <div className="container__flex">
                 <div className="container__flex__image">
@@ -51,6 +59,7 @@ export const DetailsDelivery = () => {
                 </div>
             </div>
         </div>
+        <Footer/>
         </>
     )
 }

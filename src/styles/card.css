@@ -7,6 +7,13 @@
     border-radius: 7px;
 }
 
+.card__flex__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+}
+
 .price {
     color: grey;
     font-size: 22px;
@@ -46,6 +53,8 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    height: 180px;
+    object-fit: cover;
 }
 
 .card__flex {
