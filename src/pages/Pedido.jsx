@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Footer } from '../components/user/Footer';
 import { setTableSelect } from '../redux/user/userThunk';
 import { Card } from './../components/user/Card';

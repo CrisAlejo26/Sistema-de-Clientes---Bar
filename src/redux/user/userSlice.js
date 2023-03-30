@@ -12,7 +12,10 @@ export const userSlice = createSlice({
         tableSelect: '',
         data: [],
         details: {},
-        shop: []
+        shop: [],
+        shopTotal: 0,
+        lengthCar: false,
+        cant: 0
     },
     reducers: {
 
@@ -20,11 +23,11 @@ export const userSlice = createSlice({
             state.table = action.payload
         },
 
-        validationTable: (state, action) => {
+        validationTable: (state) => {
             state.validation = true
         },
 
-        ocupationTable: (state, action) => {
+        ocupationTable: (state) => {
             state.validation = false
             state.tableSelect = state.table
             state.table = ''
@@ -60,12 +63,62 @@ export const userSlice = createSlice({
 
         // ? Carrito de Compras
         addCarShop: (state, action) => {
-            state.shop = [...state.shop, action.payload]
-        }
+            if (state.shop.length === 0) {
+                state.shop = [...state.shop, action.payload]
+                return
+            }else if (state.shop.length >= 1){
+                const index = state.shop.findIndex(item => item.id === action.payload.id);
+                if (index !== -1) {
+                    state.shop[index].cantidad += 1;
+                }else {
+                    state.shop = [...state.shop, action.payload]
+                }
+            }
+        },
+
+        cantProductCarShopAdd: (state, action ) => {
+            state.cantidad = action.payload
+        },
+
+        cantidadProductForItem: (state, action ) => {
+            const { id, cantidad } = action.payload;
+            const item = state.shop.find(item => item.id === id);
+            if (item) {
+                item.cantidad = cantidad;
+                item.totalProduct = cantidad * item.precio
+            }
+        },
+
+        totalShopPrice: (state) => {
+            state.shopTotal = state.shop.reduce((x, iterador) => {
+                return x + iterador.totalProduct;
+            }, 0)
+        },
+
+        deleteProductCarShop: (state, action) => {
+            const item = state.shop.findIndex(x => x.id === action.payload)
+            state.shop.splice(item, 1)
+        },
+
+        deleteAllProductsCarShop: (state, action) => {
+            state.shop = []
+            state.lengthCar = false
+            state.cant = 0
+        },
+
+        //? Validacion de cantidad de datos en el carrito
+        validationCantCarShop: (state, action) => {
+            state.cant = state.shop.length === [] ? 0 : state.shop.length
+            if (state.cant !== 0) {
+                state.lengthCar = true
+                return
+            }
+            state.lengthCar = false
+        },
     }
 });
 
 
 // Action creators are generated for each case reducer function
 export const { selectTable, validationTable, ocupationTable, indexApp, loadData, setIdDetails, setDetailsDelivery,
-    clearDetailsDelivery, setTable, addCarShop } = userSlice.actions;
+    clearDetailsDelivery, setTable, addCarShop, cantProductCarShop, cantProductCarShopAdd, cantidadProductForItem, totalShopPrice, deleteProductCarShop, validationCantCarShop, deleteAllProductsCarShop } = userSlice.actions;
