@@ -783,6 +783,7 @@ ul {
 
   .container__login {
     width: 95%;
+    padding: 2rem 1rem;
   }
 }
 
@@ -794,7 +795,7 @@ ul {
   .container__login {
     width: 90%;
     font-size: 1rem;
-    padding: 3rem;
+    padding: 2rem 1rem;
   }
 
   .container__input--label {
@@ -871,4 +872,8 @@ ul {
     font-size: 10px;
     padding-left: 7px;
   }
+}
+
+@media screen and (max-width: 380px) {
+
 }

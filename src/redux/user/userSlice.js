@@ -15,7 +15,8 @@ export const userSlice = createSlice({
         shop: [],
         shopTotal: 0,
         lengthCar: false,
-        cant: 0
+        cant: 0,
+        delivery: []
     },
     reducers: {
 
@@ -115,10 +116,22 @@ export const userSlice = createSlice({
             }
             state.lengthCar = false
         },
+
+        // ? Compra
+        buy: (state) => {
+            let dat = state.options.filter(x => !x.includes(state.tableSelect))
+            state.lengthCar = false
+            state.shop.map(x => {
+                state.delivery = [...state.delivery, {mesa: state.tableSelect, x}]
+            })
+            state.shop = []
+            state.options = dat
+            state.cant = 0
+        }
     }
 });
 
 
 // Action creators are generated for each case reducer function
 export const { selectTable, validationTable, ocupationTable, indexApp, loadData, setIdDetails, setDetailsDelivery,
-    clearDetailsDelivery, setTable, addCarShop, cantProductCarShop, cantProductCarShopAdd, cantidadProductForItem, totalShopPrice, deleteProductCarShop, validationCantCarShop, deleteAllProductsCarShop } = userSlice.actions;
+    clearDetailsDelivery, setTable, addCarShop, cantProductCarShop, cantProductCarShopAdd, cantidadProductForItem, totalShopPrice, deleteProductCarShop, validationCantCarShop, deleteAllProductsCarShop, buy } = userSlice.actions;

@@ -1,4 +1,4 @@
-import { loadData, setIdDetails, setDetailsDelivery, clearDetailsDelivery, setTable, addCarShop, cantProductCarShop, cantProductCarShopAdd, cantidadProductForItem, totalShopPrice, deleteProductCarShop, validationCantCarShop, deleteAllProductsCarShop } from "./userSlice"
+import { loadData, setIdDetails, setDetailsDelivery, clearDetailsDelivery, setTable, addCarShop, cantProductCarShop, cantProductCarShopAdd, cantidadProductForItem, totalShopPrice, deleteProductCarShop, validationCantCarShop, deleteAllProductsCarShop, buy } from "./userSlice"
 
 export const userThunk = () => {
     return async(dispatch) => {
@@ -79,5 +79,11 @@ export const validationCantCarShopThunk = () => {
 export const deleteAllProductsCarShopThunk = () => {
     return async(dispatch) => {
         dispatch(deleteAllProductsCarShop())
+    }
+}
+
+export const buyThunk = () => {
+    return async(dispatch) => {
+        dispatch(buy())
     }
 }

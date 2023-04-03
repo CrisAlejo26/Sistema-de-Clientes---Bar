@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export const Login = () => {
     return (
         <>
-            <div class="context">
+            <div className="context">
                 <div className="container__login">
                     <h2>Iniciar Sesión</h2>
                     <div className="container__input">
@@ -33,8 +33,8 @@ export const Login = () => {
                     </div>
                 </div>
             </div>
-            <div class="area" >
-                <ul class="circles">
+            <div className="area" >
+                <ul className="circles">
                     <li></li>
                     <li></li>
                     <li></li>
