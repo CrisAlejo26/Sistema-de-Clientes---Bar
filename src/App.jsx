@@ -11,6 +11,7 @@ import { Inicio } from "./pages/Inicio"
 import { Login } from "./pages/Login"
 import { Pedido } from "./pages/Pedido"
 import { userThunk } from "./redux/user/userThunk"
+import { loadTableLocalStorage } from "./redux/user/userSlice"
 
 function App() {
 
@@ -18,6 +19,10 @@ function App() {
     
   useEffect(() => {
     dispatch(userThunk())
+  }, []);
+
+  useEffect(() => {
+    dispatch(loadTableLocalStorage())
   }, []);
 
   return (

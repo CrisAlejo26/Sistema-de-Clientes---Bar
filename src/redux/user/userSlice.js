@@ -24,6 +24,10 @@ export const userSlice = createSlice({
             state.table = action.payload
         },
 
+        loadTableLocalStorage: (state) => {
+            localStorage.setItem("optionsCant", JSON.stringify(state.options))
+        },
+
         validationTable: (state) => {
             state.validation = true
         },
@@ -120,18 +124,28 @@ export const userSlice = createSlice({
         // ? Compra
         buy: (state) => {
             let dat = state.options.filter(x => !x.includes(state.tableSelect))
-            state.lengthCar = false
+            state.cantDeliveryAdmin = JSON.parse(localStorage.getItem("optionsCant")).length - dat.length
+            localStorage.setItem("cantDeliveryAdmin", JSON.stringify(state.cantDeliveryAdmin))
+            localStorage.setItem("options", JSON.stringify(dat))
             state.shop.map(x => {
                 state.delivery = [...state.delivery, {mesa: state.tableSelect, x}]
             })
+            localStorage.setItem("delivery", JSON.stringify(state.delivery))
             state.shop = []
             state.options = dat
             state.cant = 0
-        }
+            state.lengthCar = false
+        },
+
+        loadDataLocalStorage: (state) => {
+            state.delivery = JSON.parse(localStorage.getItem('delivery'))
+            state.options = JSON.parse(localStorage.getItem('options'))
+            state.cantDeliveryAdmin = JSON.parse(localStorage.getItem('cantDeliveryAdmin')) || 0
+        } 
+
     }
 });
 
-
-// Action creators are generated for each case reducer function
-export const { selectTable, validationTable, ocupationTable, indexApp, loadData, setIdDetails, setDetailsDelivery,
-    clearDetailsDelivery, setTable, addCarShop, cantProductCarShop, cantProductCarShopAdd, cantidadProductForItem, totalShopPrice, deleteProductCarShop, validationCantCarShop, deleteAllProductsCarShop, buy } = userSlice.actions;
+// ? User
+export const { selectTable, loadTableLocalStorage, validationTable, ocupationTable, indexApp, loadData, setIdDetails, setDetailsDelivery,
+    clearDetailsDelivery, setTable, addCarShop, cantProductCarShop, cantProductCarShopAdd, cantidadProductForItem, totalShopPrice, deleteProductCarShop, validationCantCarShop, deleteAllProductsCarShop, buy, loadDataLocalStorage } = userSlice.actions;

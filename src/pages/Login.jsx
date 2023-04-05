@@ -16,17 +16,17 @@ export const Login = () => {
                             <input id="password" placeholder="Contraseña" type="password" name="password" className="input"/>
                         </div>
                         <div className="container__input__buttons">
-                        <Link className="container__input__buttons--ingresar" href="#">Ingresar</Link>
+                            <Link className="container__input__buttons--ingresar" href="#">Ingresar</Link>
                             <Link href="#">
                                 <div className="g-sign-in-button">
-                                <div className="content-wrapper">
-                                    <div className="logo-wrapper">
-                                    <img src="https://developers.google.com/identity/images/g-logo.png"/>
+                                    <div className="content-wrapper">
+                                        <div className="logo-wrapper">
+                                            <img src="https://developers.google.com/identity/images/g-logo.png"/>
+                                        </div>
+                                        <span className="text-container">
+                                        <span>Sign in with Google</span>
+                                        </span>
                                     </div>
-                                    <span className="text-container">
-                                    <span>Sign in with Google</span>
-                                    </span>
-                                </div>
                                 </div>
                             </Link>
                         </div>
