@@ -3,7 +3,6 @@ import { loadData, setIdDetails, setDetailsDelivery, clearDetailsDelivery, setTa
 export const userThunk = () => {
     return async(dispatch) => {
         dispatch(loadData())
-        
     } 
 }
 

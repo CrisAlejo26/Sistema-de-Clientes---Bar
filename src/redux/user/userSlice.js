@@ -16,7 +16,7 @@ export const userSlice = createSlice({
         shopTotal: 0,
         lengthCar: false,
         cant: 0,
-        delivery: []
+        delivery: {},
     },
     reducers: {
 
@@ -127,9 +127,22 @@ export const userSlice = createSlice({
             state.cantDeliveryAdmin = JSON.parse(localStorage.getItem("optionsCant")).length - dat.length
             localStorage.setItem("cantDeliveryAdmin", JSON.stringify(state.cantDeliveryAdmin))
             localStorage.setItem("options", JSON.stringify(dat))
-            state.shop.map(x => {
-                state.delivery = [...state.delivery, {mesa: state.tableSelect, x}]
-            })
+            state.delivery = {...state.delivery, [state.tableSelect]: state.shop}
+            
+            let claves = Object.keys(state.delivery); // claves = ["nombre", "color", "macho", "edad"]
+            if(claves !== null) {
+                let clave;
+                for(let i=0; i< claves.length; i++){
+                    clave = claves[i];
+                    // Identificar en que posicion esta time
+                    let u = state.delivery[clave].findIndex(ele => ele.time)
+                    if (u < 0) {
+                        state.delivery[clave].push({time: 20 * 60})
+                    }
+                    console.log(u);
+                }
+
+            }
             localStorage.setItem("delivery", JSON.stringify(state.delivery))
             state.shop = []
             state.options = dat
@@ -137,15 +150,44 @@ export const userSlice = createSlice({
             state.lengthCar = false
         },
 
+        times: (state) => {
+            let claves = Object.keys(state.delivery); // claves = ["nombre", "color", "macho", "edad"]
+            if(claves !== null) {
+                for(let i=0; i< claves.length; i++){
+                    let clave = claves[i];
+                    state.delivery[clave].map(x => {
+                        if (x.time !== undefined) {
+                            x.time --
+                        }
+                    })
+                }
+                
+            }
+        },
+
         loadDataLocalStorage: (state) => {
-            state.delivery = JSON.parse(localStorage.getItem('delivery'))
-            state.options = JSON.parse(localStorage.getItem('options'))
-            state.cantDeliveryAdmin = JSON.parse(localStorage.getItem('cantDeliveryAdmin')) || 0
+            if(JSON.parse(localStorage.getItem('options')) !== null) {
+                state.options = JSON.parse(localStorage.getItem('options'))
+            }
+            if(JSON.parse(localStorage.getItem('delivery')) !== null) {
+                state.delivery = JSON.parse(localStorage.getItem('delivery'))
+            }
+            if(JSON.parse(localStorage.getItem('cantDeliveryAdmin')) !== null) {
+                state.cantDeliveryAdmin = JSON.parse(localStorage.getItem('cantDeliveryAdmin')) || 0
+            }
+            localStorage.setItem("optionsCant", JSON.stringify(state.options))
         } 
 
+    },
+
+    extraReducers: (builder) => {
+        builder.addCase('buy', (state, action) => {
+            setInterval(() => {
+                // Do something here
+            }, 1000);
+        });
     }
 });
 
 // ? User
-export const { selectTable, loadTableLocalStorage, validationTable, ocupationTable, indexApp, loadData, setIdDetails, setDetailsDelivery,
-    clearDetailsDelivery, setTable, addCarShop, cantProductCarShop, cantProductCarShopAdd, cantidadProductForItem, totalShopPrice, deleteProductCarShop, validationCantCarShop, deleteAllProductsCarShop, buy, loadDataLocalStorage } = userSlice.actions;
+export const { selectTable, startCountDown, loadTableLocalStorage, validationTable, ocupationTable, indexApp, loadData, setIdDetails, setDetailsDelivery, clearDetailsDelivery, setTable, addCarShop, cantProductCarShop, cantProductCarShopAdd, cantidadProductForItem, totalShopPrice, deleteProductCarShop, validationCantCarShop, deleteAllProductsCarShop, buy, loadDataLocalStorage, times } = userSlice.actions;

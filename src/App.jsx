@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { NavAdmin } from "./components/admin/NavAdmin"
 import { ProtectedRouteUser } from "./components/user/ProtectedRouteUser"
@@ -11,18 +11,29 @@ import { Inicio } from "./pages/Inicio"
 import { Login } from "./pages/Login"
 import { Pedido } from "./pages/Pedido"
 import { userThunk } from "./redux/user/userThunk"
-import { loadTableLocalStorage } from "./redux/user/userSlice"
+import { loadDataLocalStorage, times } from "./redux/user/userSlice"
 
 function App() {
 
   const dispatch = useDispatch()
+  const {delivery} = useSelector(state => state.user)
     
   useEffect(() => {
     dispatch(userThunk())
   }, []);
 
   useEffect(() => {
-    dispatch(loadTableLocalStorage())
+    if(Object.keys(delivery).length > 0){
+      const interval = setInterval(() => {
+        dispatch(times());
+      }, 1000);
+  
+      return () => clearInterval(interval);
+    }
+  }, [delivery]);
+
+  useEffect(() => {
+    dispatch(loadDataLocalStorage())
   }, []);
 
   return (

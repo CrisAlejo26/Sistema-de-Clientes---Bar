@@ -13,7 +13,7 @@ export const CardDashboardOne = () => {
             <div className='dashboard__dat dashboard__dat__img'>
                 <div>
                     <h4 className='dashboard__dat__subtitle'>Pedidos</h4>
-                    <h2 className='dashboard__dat__title'>{delivery ? delivery.length : 0}</h2>
+                    <h2 className='dashboard__dat__title'>{delivery ? Object.keys(delivery).length : 0}</h2>
                 </div>
                 <img src="/pedidoIcon.svg" alt="no se puede ver" />
             </div>

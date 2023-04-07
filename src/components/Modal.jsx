@@ -3,14 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../styles/modal.css'
 import { Button } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Modal = ({setOpenModal, modal}) => {
 
     const [tiempoRestante, setTiempoRestante] = useState(20 * 60);
-
+    const navigate = useNavigate()
     useEffect(() => {
         const intervalId = setInterval(() => {
-        setTiempoRestante((prevTiempoRestante) => prevTiempoRestante - 1);
+            setTiempoRestante((prevTiempoRestante) => prevTiempoRestante - 1);
         }, 1000);
         return () => clearInterval(intervalId);
     }, []);
@@ -20,6 +21,7 @@ export const Modal = ({setOpenModal, modal}) => {
 
     const onClickRed = () => {
         setOpenModal(false)
+        navigate("/")
     }
 
     return (
