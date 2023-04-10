@@ -11,12 +11,12 @@ import { Inicio } from "./pages/Inicio"
 import { Login } from "./pages/Login"
 import { Pedido } from "./pages/Pedido"
 import { userThunk } from "./redux/user/userThunk"
-import { loadDataLocalStorage, times } from "./redux/user/userSlice"
+import { loadDataLocalStorage, timeTotal, times } from "./redux/user/userSlice"
 
 function App() {
 
   const dispatch = useDispatch()
-  const {delivery} = useSelector(state => state.user)
+  const {delivery, comp} = useSelector(state => state.user)
     
   useEffect(() => {
     dispatch(userThunk())
@@ -24,17 +24,35 @@ function App() {
 
   useEffect(() => {
     if(Object.keys(delivery).length > 0){
-      const interval = setInterval(() => {
-        dispatch(times());
-      }, 1000);
-  
-      return () => clearInterval(interval);
+        let claves = Object.keys(delivery)
+          if(claves !== null) {
+            for(let i=0; i< claves.length; i++){
+              let clave = claves[i];
+              delivery[clave].map(x => {
+                  if (x.time !== undefined) {
+                    if (x.time > 0) {
+                      console.log(x.time);
+                      const interval = setInterval(() => {
+                        dispatch(times());
+                      }, 1000);
+                  
+                      return () => clearInterval(interval);
+                    }
+                  }
+              })
+            }
+          }
     }
-  }, [delivery]);
+    return
+  }, [comp]);
 
   useEffect(() => {
     dispatch(loadDataLocalStorage())
   }, []);
+
+  useEffect(() => {
+    dispatch(timeTotal())
+  }, [])
 
   return (
     <BrowserRouter>
